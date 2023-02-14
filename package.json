@@ -1,0 +1,14 @@
+{
+  "name": "aicheck",
+  "version": "1.0.0",
+  "description": "AiCheck gives you advices about your code using AI.",
+  "main": "index.js",
+  "type": "module",
+  "author": "Pierre Martin",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "5.2.0",
+    "inquirer": "9.1.4",
+    "openai": "3.1.0"
+  }
+}
