@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import chalk from "chalk";
 import { Configuration, OpenAIApi } from "openai";
 import { execSync } from "child_process";
@@ -5,13 +6,13 @@ import { execSync } from "child_process";
 const apiKey = process.env.OPENAI_API_KEY;
 
 if (!apiKey) {
-  throw new Error("No OPENAI_API_KEY key found!");
+  throw new Error(chalk.red("No OPENAI_API_KEY key found!"));
 }
 
 const isGitRepo = execSync("git rev-parse --is-inside-work-tree");
 
 if (!isGitRepo) {
-  throw new Error("You are not inside a Git repo !");
+  throw new Error(chalk.red("You are not inside a Git repo !"));
 }
 
 const configuration = new Configuration({
@@ -23,11 +24,11 @@ const diff = execSync(`git diff HEAD`, {
 });
 
 if (diff.length === 0) {
-  throw new Error("There is no change !");
+  throw new Error(chalk.red("There is no change !"));
 }
 
 if (diff.length > 7000) {
-  throw new Error("The diff is too large to be analysed");
+  throw new Error(chalk.red("The diff is too large to be analysed"));
 }
 
 try {
